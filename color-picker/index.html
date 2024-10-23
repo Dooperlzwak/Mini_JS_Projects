@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Color Picker with Separate Lightness and Darkness Bars</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="color-picker">
+        <div class="color-preview" id="colorPreview"></div>
+        <div class="color-bar" id="colorBar">
+            <div class="slider-handle" id="sliderHandle"></div>
+        </div>
+        <div class="darkness-bar" id="darknessBar">
+            <div class="darkness-handle" id="darknessHandle"></div>
+        </div>
+        <div class="lightness-bar" id="lightnessBar">
+            <div class="lightness-handle" id="lightnessHandle"></div>
+        </div>
+        <div class="code-output">
+            Hex Code: <span id="hexCode">#FF0000</span><br>
+            RGB Code: <span id="rgbCode">rgb(255, 0, 0)</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
