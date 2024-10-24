@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculator</title>
+    <title>Advanced Calculator</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 </head>
 <body>
+
+    <!-- Burger Menu Icon moved outside the calculator -->
+    <div class="burger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
     <div class="calculator">
         <input type="text" id="display" disabled>
         <div class="buttons">
@@ -19,7 +28,7 @@
             <button class="btn function" onclick="appendFunction('square')">x²</button>
             <button class="btn function" onclick="appendFunction('inverse')">x⁻¹</button>
             <button class="btn function" onclick="appendFunction('sqrt')">√</button>
-            <button class="btn operator" onclick="appendToDisplay('^')">^</button>
+            <button class="btn function" onclick="appendToDisplay('^')">^</button>
             <!-- Row 3 -->
             <button class="btn function" onclick="appendFunction('tenPower')">10<sup>x</sup></button>
             <button class="btn function" onclick="appendToDisplay('(')">(</button>
@@ -44,9 +53,33 @@
             <button class="btn function" onclick="toggleSign()">±</button>
             <button class="btn number" onclick="appendToDisplay('0')">0</button>
             <button class="btn number" onclick="appendToDisplay('.')">.</button>
-            <button class="btn equals" onclick="calculateResult()">=</button>
+            <button class="btn operator" onclick="calculateResult()">=</button>
         </div>
     </div>
+
+    <!-- Settings Menu -->
+    <div class="settings-menu" id="settingsMenu">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div class="setting-item">
+                <label for="hueSlider">Operator Button Hue:</label>
+                <input type="range" id="hueSlider" min="0" max="360" value="30" onchange="changeButtonHue(this.value)">
+            </div>
+            <div class="setting-item">
+                <label for="hexInput">Operator Button Color (Hex):</label>
+                <input type="text" id="hexInput" value="#ff8000" onchange="changeButtonHex(this.value)">
+            </div>
+            <div class="setting-item">
+                <label for="themeToggle">Theme:</label>
+                <select id="themeToggle" onchange="toggleTheme(this.value)">
+                    <option value="dark" selected>Dark Mode</option>
+                    <option value="light">Light Mode</option>
+                </select>
+            </div>
+            <button class="close-menu" onclick="toggleMenu()">Close</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
