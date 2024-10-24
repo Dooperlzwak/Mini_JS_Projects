@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <!-- Row 1 -->
+            <button class="btn function" onclick="appendToDisplay('π')">π</button>
+            <button class="btn function" onclick="appendToDisplay('e')">e</button>
+            <button class="btn function" onclick="clearDisplay()">C</button>
+            <button class="btn function" onclick="deleteLast()">⌫</button>
+            <!-- Row 2 -->
+            <button class="btn function" onclick="appendFunction('square')">x²</button>
+            <button class="btn function" onclick="appendFunction('inverse')">x⁻¹</button>
+            <button class="btn function" onclick="appendFunction('sqrt')">√</button>
+            <button class="btn operator" onclick="appendToDisplay('^')">^</button>
+            <!-- Row 3 -->
+            <button class="btn function" onclick="appendFunction('tenPower')">10<sup>x</sup></button>
+            <button class="btn function" onclick="appendToDisplay('(')">(</button>
+            <button class="btn function" onclick="appendToDisplay(')')">)</button>
+            <button class="btn operator" onclick="appendToDisplay('/')">÷</button>
+            <!-- Row 4 -->
+            <button class="btn number" onclick="appendToDisplay('7')">7</button>
+            <button class="btn number" onclick="appendToDisplay('8')">8</button>
+            <button class="btn number" onclick="appendToDisplay('9')">9</button>
+            <button class="btn operator" onclick="appendToDisplay('*')">×</button>
+            <!-- Row 5 -->
+            <button class="btn number" onclick="appendToDisplay('4')">4</button>
+            <button class="btn number" onclick="appendToDisplay('5')">5</button>
+            <button class="btn number" onclick="appendToDisplay('6')">6</button>
+            <button class="btn operator" onclick="appendToDisplay('-')">−</button>
+            <!-- Row 6 -->
+            <button class="btn number" onclick="appendToDisplay('1')">1</button>
+            <button class="btn number" onclick="appendToDisplay('2')">2</button>
+            <button class="btn number" onclick="appendToDisplay('3')">3</button>
+            <button class="btn operator" onclick="appendToDisplay('+')">+</button>
+            <!-- Row 7 -->
+            <button class="btn function" onclick="toggleSign()">±</button>
+            <button class="btn number" onclick="appendToDisplay('0')">0</button>
+            <button class="btn number" onclick="appendToDisplay('.')">.</button>
+            <button class="btn equals" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
