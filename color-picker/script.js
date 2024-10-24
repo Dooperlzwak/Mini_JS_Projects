@@ -8,6 +8,8 @@ const darknessBar = document.getElementById('darknessBar');
 const darknessHandle = document.getElementById('darknessHandle');
 const lightnessBar = document.getElementById('lightnessBar');
 const lightnessHandle = document.getElementById('lightnessHandle');
+const themeSwitcher = document.getElementById('themeSwitcher');
+const body = document.body;
 
 // Initialize hue, darkness, and lightness values
 let hue = 0;
@@ -48,15 +50,15 @@ function updateColor() {
     // Update the slider handle positions
     const rect = colorBar.getBoundingClientRect();
     const x = (h / 360) * rect.width;
-    sliderHandle.style.left = `${x - sliderHandle.offsetWidth / 2}px`;
+    sliderHandle.style.left = `${x}px`;
 
     const dRect = darknessBar.getBoundingClientRect();
     const dX = darkness * dRect.width;
-    darknessHandle.style.left = `${dX - darknessHandle.offsetWidth / 2}px`;
+    darknessHandle.style.left = `${dX}px`;
 
     const lRect = lightnessBar.getBoundingClientRect();
     const lX = lightness * lRect.width;
-    lightnessHandle.style.left = `${lX - lightnessHandle.offsetWidth / 2}px`;
+    lightnessHandle.style.left = `${lX}px`;
 
     // Update the gradients of the darkness and lightness bars
     const pureHueColor = `hsl(${h}, 100%, 50%)`;
@@ -69,11 +71,16 @@ function updateHue(event) {
     const rect = colorBar.getBoundingClientRect();
     let x = event.clientX - rect.left;
 
+    // Handle touch events
+    if (event.touches) {
+        x = event.touches[0].clientX - rect.left;
+    }
+
     // Clamp x within the color bar width
     x = Math.max(0, Math.min(x, rect.width));
 
     // Update the slider handle position
-    sliderHandle.style.left = `${x - sliderHandle.offsetWidth / 2}px`;
+    sliderHandle.style.left = `${x}px`;
 
     // Calculate hue based on position
     hue = (x / rect.width) * 360;
@@ -81,33 +88,47 @@ function updateHue(event) {
     updateColor();
 }
 
+function startDrag(callback) {
+    return function(event) {
+        callback(event);
+
+        function onMouseMove(e) {
+            callback(e);
+        }
+
+        function onMouseUp() {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            document.removeEventListener('touchmove', onMouseMove);
+            document.removeEventListener('touchend', onMouseUp);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        document.addEventListener('touchmove', onMouseMove);
+        document.addEventListener('touchend', onMouseUp);
+    };
+}
+
 // Event listeners for hue selection
-colorBar.addEventListener('mousedown', function(event) {
-    updateHue(event);
-
-    function onMouseMove(e) {
-        updateHue(e);
-    }
-
-    function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-});
+colorBar.addEventListener('mousedown', startDrag(updateHue));
+colorBar.addEventListener('touchstart', startDrag(updateHue));
 
 // Function to handle darkness changes
 function updateDarkness(event) {
     const rect = darknessBar.getBoundingClientRect();
     let x = event.clientX - rect.left;
 
+    // Handle touch events
+    if (event.touches) {
+        x = event.touches[0].clientX - rect.left;
+    }
+
     // Clamp x within the darkness bar width
     x = Math.max(0, Math.min(x, rect.width));
 
     // Update the darkness handle position
-    darknessHandle.style.left = `${x - darknessHandle.offsetWidth / 2}px`;
+    darknessHandle.style.left = `${x}px`;
 
     // Calculate darkness based on position
     darkness = x / rect.width;
@@ -116,32 +137,24 @@ function updateDarkness(event) {
 }
 
 // Event listeners for darkness selection
-darknessBar.addEventListener('mousedown', function(event) {
-    updateDarkness(event);
-
-    function onMouseMove(e) {
-        updateDarkness(e);
-    }
-
-    function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-});
+darknessBar.addEventListener('mousedown', startDrag(updateDarkness));
+darknessBar.addEventListener('touchstart', startDrag(updateDarkness));
 
 // Function to handle lightness changes
 function updateLightness(event) {
     const rect = lightnessBar.getBoundingClientRect();
     let x = event.clientX - rect.left;
 
+    // Handle touch events
+    if (event.touches) {
+        x = event.touches[0].clientX - rect.left;
+    }
+
     // Clamp x within the lightness bar width
     x = Math.max(0, Math.min(x, rect.width));
 
     // Update the lightness handle position
-    lightnessHandle.style.left = `${x - lightnessHandle.offsetWidth / 2}px`;
+    lightnessHandle.style.left = `${x}px`;
 
     // Calculate lightness based on position
     lightness = x / rect.width;
@@ -150,21 +163,8 @@ function updateLightness(event) {
 }
 
 // Event listeners for lightness selection
-lightnessBar.addEventListener('mousedown', function(event) {
-    updateLightness(event);
-
-    function onMouseMove(e) {
-        updateLightness(e);
-    }
-
-    function onMouseUp() {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-});
+lightnessBar.addEventListener('mousedown', startDrag(updateLightness));
+lightnessBar.addEventListener('touchstart', startDrag(updateLightness));
 
 // Initialize the color picker
 updateColor();
@@ -173,7 +173,7 @@ updateColor();
 function hslToRgb(h, s, l) {
     let r, g, b;
 
-    if (s == 0) {
+    if (s === 0) {
         r = g = b = l * 255; // Achromatic
     } else {
         const hue2rgb = function(p, q, t) {
@@ -197,5 +197,13 @@ function hslToRgb(h, s, l) {
 
 // Helper function to convert RGB to HEX
 function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b)).toString(16).slice(1).toUpperCase();
+    return "#" + ((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b))
+        .toString(16)
+        .slice(1)
+        .toUpperCase();
 }
+
+// Theme Switcher Functionality
+themeSwitcher.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+});
