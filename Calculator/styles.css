@@ -1,0 +1,395 @@
+/* Root Variables */
+:root {
+    --bg-color: #1e1e1e;
+    --calculator-bg: #2c2c2c;
+    --display-bg: #3a3a3a;
+    --btn-bg: #4a4a4a;
+    --btn-hover-bg: #5a5a5a;
+    --operator-btn-bg: #ff9500;
+    --operator-btn-hover-bg: #ffab40;
+    --equals-btn-bg: #34c759;
+    --equals-btn-hover-bg: #66d97a;
+    --font-color: #ffffff;
+    --font-family: 'Roboto', sans-serif;
+}
+
+/* Added this to ensure box-sizing is border-box for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: var(--calculator-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    /* Removed fixed width to allow content-based sizing */
+    /* width: 360px; */
+    /* Set max-width to keep it responsive */
+    max-width: 360px;
+    width: 100%;
+}
+
+/* Display Styling */
+#display {
+    width: 100%;
+    height: 60px;
+    background-color: var(--display-bg);
+    border: none;
+    border-radius: 10px;
+    color: var(--font-color);
+    font-size: 2em;
+    text-align: right;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    outline: none;
+    /* Ensuring the padding doesn't affect the total width */
+    /* box-sizing is already set globally */
+}
+
+/* Buttons Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+/* General Button Styling */
+.btn {
+    background-color: var(--btn-bg);
+    color: var(--font-color);
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2em;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Number Buttons */
+.btn.number {
+    background-color: var(--btn-bg);
+}
+
+/* Removed zero button width adjustment */
+.btn.number.zero {
+    /* grid-column: span 2; */
+}
+
+/* Operator Buttons */
+.btn.operator {
+    background-color: var(--operator-btn-bg);
+}
+
+.btn.equals {
+    background-color: var(--equals-btn-bg);
+}
+
+/* Function Buttons */
+.btn.function {
+    background-color: var(--btn-bg);
+}
+
+/* Hover Effects */
+.btn:hover {
+    background-color: var(--btn-hover-bg);
+}
+
+.btn.operator:hover {
+    background-color: var(--operator-btn-hover-bg);
+}
+
+.btn.equals:hover {
+    background-color: var(--equals-btn-hover-bg);
+}
+
+/* Active Effects */
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Ripple Effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: scale(0);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(1);
+    opacity: 0;
+    transition: transform 0s, opacity 0s;
+}
+
+
+/* Added this to ensure box-sizing is border-box for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: var(--calculator-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    /* Removed fixed width to allow content-based sizing */
+    /* width: 360px; */
+    /* Set max-width to keep it responsive */
+    max-width: 360px;
+    width: 100%;
+}
+
+/* Display Styling */
+#display {
+    width: 100%;
+    height: 60px;
+    background-color: var(--display-bg);
+    border: none;
+    border-radius: 10px;
+    color: var(--font-color);
+    font-size: 2em;
+    text-align: right;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    outline: none;
+    /* Ensuring the padding doesn't affect the total width */
+    /* box-sizing is already set globally */
+}
+
+/* Buttons Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+/* General Button Styling */
+.btn {
+    background-color: var(--btn-bg);
+    color: var(--font-color);
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2em;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Number Buttons */
+.btn.number {
+    background-color: var(--btn-bg);
+}
+
+/* Removed zero button width adjustment */
+.btn.number.zero {
+    /* grid-column: span 2; */
+}
+
+/* Operator Buttons */
+.btn.operator {
+    background-color: var(--operator-btn-bg);
+}
+
+.btn.equals {
+    background-color: var(--equals-btn-bg);
+}
+
+/* Function Buttons */
+.btn.function {
+    background-color: var(--btn-bg);
+}
+
+/* Hover Effects */
+.btn:hover {
+    background-color: var(--btn-hover-bg);
+}
+
+.btn.operator:hover {
+    background-color: var(--operator-btn-hover-bg);
+}
+
+.btn.equals:hover {
+    background-color: var(--equals-btn-hover-bg);
+}
+
+/* Active Effects */
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Ripple Effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: scale(0);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(1);
+    opacity: 0;
+    transition: transform 0s, opacity 0s;
+}
+
+
+/* Body Styling */
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: var(--calculator-bg);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    width: 360px;
+}
+
+/* Display Styling */
+#display {
+    width: 100%;
+    height: 60px;
+    background-color: var(--display-bg);
+    border: none;
+    border-radius: 10px;
+    color: var(--font-color);
+    font-size: 2em;
+    text-align: right;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+/* Buttons Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+/* General Button Styling */
+.btn {
+    background-color: var(--btn-bg);
+    color: var(--font-color);
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2em;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Number Buttons */
+.btn.number {
+    background-color: var(--btn-bg);
+}
+
+/* Remove this rule to make the zero button the same width */
+.btn.number.zero {
+    /* grid-column: span 2; */
+}
+
+/* Operator Buttons */
+.btn.operator {
+    background-color: var(--operator-btn-bg);
+}
+
+.btn.equals {
+    background-color: var(--equals-btn-bg);
+}
+
+/* Function Buttons */
+.btn.function {
+    background-color: var(--btn-bg);
+}
+
+/* Hover Effects */
+.btn:hover {
+    background-color: var(--btn-hover-bg);
+}
+
+.btn.operator:hover {
+    background-color: var(--operator-btn-hover-bg);
+}
+
+.btn.equals:hover {
+    background-color: var(--equals-btn-hover-bg);
+}
+
+/* Active Effects */
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Ripple Effect */
+.btn::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: scale(0);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.btn:active::after {
+    transform: scale(1);
+    opacity: 0;
+    transition: transform 0s, opacity 0s;
+}
