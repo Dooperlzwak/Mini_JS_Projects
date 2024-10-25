@@ -1,0 +1,184 @@
+:root {
+	--background-color: #1e1e1e;
+	--text-color: #f0f0f0;
+	--cell-background: #2d2d2d;
+	--cell-hover: #3e3e3e;
+	--x-color: #ff6b6b;
+	--o-color: #1dd1a1;
+	--winner-color: #10ac84;
+	--tie-color: #ff9f43;
+	--button-background: #576574;
+	--button-hover: #778ca3;
+}
+
+/* Light Theme Variables */
+.light-mode {
+	--background-color: #f0f0f0;
+	--text-color: #1e1e1e;
+	--cell-background: #ffffff;
+	--cell-hover: #e0e0e0;
+	--x-color: #e74c3c;
+	--o-color: #27ae60;
+	--winner-color: #2ecc71;
+	--tie-color: #f1c40f;
+	--button-background: #bdc3c7;
+	--button-hover: #95a5a6;
+}
+
+body {
+	font-family: "Nunito", sans-serif;
+	background-color: var(--background-color);
+	color: var(--text-color);
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	min-height: 100vh;
+}
+
+h1 {
+	margin-top: 30px;
+	font-size: 36px;
+	color: var(--text-color);
+}
+
+#game {
+	display: grid;
+	grid-template-columns: repeat(3, 90px);
+	grid-gap: 8px;
+	justify-content: center;
+	margin: 20px auto;
+}
+
+.cell {
+	width: 90px;
+	height: 90px;
+	background-color: var(--cell-background);
+	font-size: 70px;
+	line-height: 90px;
+	cursor: pointer;
+	user-select: none;
+	color: var(--text-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		background-color 0.3s,
+		transform 0.2s;
+	border-radius: 15px;
+}
+
+.cell:hover {
+	background-color: var(--cell-hover);
+	transform: scale(1.05);
+}
+
+.cell.X,
+.cell.O {
+	animation: fadeIn 0.2s ease-in-out;
+}
+
+.cell.X {
+	color: var(--x-color);
+}
+
+.cell.O {
+	color: var(--o-color);
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.cell.winner {
+	background-color: var(--winner-color);
+	color: #ffffff;
+}
+
+.cell.tie {
+	background-color: var(--tie-color);
+	color: #ffffff;
+}
+
+#status {
+	font-size: 20px;
+	margin-top: 15px;
+	color: var(--text-color);
+}
+
+#restartButton {
+	margin-top: 15px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: var(--button-background);
+	color: var(--text-color);
+	border: none;
+	border-radius: 5px;
+	transition: background-color 0.3s;
+}
+
+#restartButton:hover {
+	background-color: var(--button-hover);
+}
+
+/* Dark/Light Mode Toggle Switch */
+.theme-switch-wrapper {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	display: flex;
+	align-items: center;
+	user-select: none;
+}
+
+.theme-switch {
+	display: inline-block;
+	height: 24px;
+	position: relative;
+	width: 48px;
+}
+
+.theme-switch input {
+	display: none;
+}
+
+.slider {
+	background-color: #ccc;
+	border-radius: 24px;
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: 0.4s;
+}
+
+.slider::before {
+	background-color: white;
+	border-radius: 50%;
+	bottom: 4px;
+	content: "";
+	height: 16px;
+	left: 4px;
+	position: absolute;
+	transition: 0.4s;
+	width: 16px;
+}
+
+/* Updated the background color when checked to black */
+input:checked + .slider {
+	background-color: #000000; /* Changed from #66bb6a to #000000 */
+}
+
+input:checked + .slider::before {
+	transform: translateX(24px);
+}
