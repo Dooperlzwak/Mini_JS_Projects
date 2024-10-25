@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <!-- Link to Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Tic Tac Toe</h1>
+
+    <div id="game">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <div id="status">Player <span id="currentPlayer">X</span>'s turn</div>
+    <button id="restartButton">Restart Game</button>
+
+    <!-- Theme Switch -->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="themeCheckbox">
+            <input type="checkbox" id="themeCheckbox" />
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <script href="script.js"></script>
+
+</body>
+</html>
