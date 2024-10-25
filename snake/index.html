@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+    <style>
+        body {
+            background-color: #000;
+            text-align: center; /* Center the container */
+        }
+        #gameContainer {
+            position: relative;
+            display: inline-block; /* Shrink to fit the canvas */
+        }
+        canvas {
+            background-color: #000;
+            border: 1px solid #fff;
+        }
+        #restartButton {
+            display: none;
+            position: absolute;
+            /* Adjusted top position to move button below the text */
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #restartButton:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div id="gameContainer">
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <button id="restartButton">Restart</button>
+</div>
+<script src="snake.js"></script>
+
+</body>
+</html>
